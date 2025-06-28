@@ -14,10 +14,13 @@ jobs:
         with:
           submodules: true
       - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
-      - name: Compile with C++23
+      - name: Install GCC 13
         run: |
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+          sudo apt install g++-13 -y
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
+          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100
           g++ --version
-          g++ -std=c++23 -o main main.cpp
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }} -DWITH_BOOST_TEST=ON
       - run: cmake --build .
       - run: cmake --build . --target test
