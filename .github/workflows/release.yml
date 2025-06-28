@@ -14,13 +14,16 @@ jobs:
         with:
           submodules: true
       - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
-      - name: Install GCC 14
+      - name: Enable C++23 - Install GCC 14 + Ninja build tool
         run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
           sudo apt install g++-14 -y
           sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 100
           sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 100
           g++ --version
+#          install and configure ninja
+          sudo apt-get install ninja-build g++
+          cmake -S . -B build -G Ninja -DCMAKE_CXX_STANDARD=23
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }} -DWITH_BOOST_TEST=ON
       - run: cmake --build .
       - run: cmake --build . --target test
