@@ -34,10 +34,8 @@ if(WITH_BOOST_TEST)
             CXX_STANDARD_REQUIRED ON
     )
 
-    set_target_properties(test_version PROPERTIES
-            COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
-            INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
-    )
+    target_include_directories(test_version PRIVATE ${Boost_INCLUDE_DIRS})
+    target_compile_definitions(test_version PRIVATE BOOST_TEST_DYN_LINK)
 
     target_link_libraries(test_version
             ${Boost_LIBRARIES}
