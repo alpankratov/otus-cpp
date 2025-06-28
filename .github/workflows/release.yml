@@ -14,10 +14,10 @@ jobs:
         with:
           submodules: true
       - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
-      - name: Install GCC 13
+      - name: Install GCC 14
         run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-          sudo apt install g++-13 -y
+          sudo apt install g++-14 -y
           sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
           sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100
           g++ --version
