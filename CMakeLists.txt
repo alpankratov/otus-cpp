@@ -1,5 +1,5 @@
 # GCC version is 14.2 or 15.1
-cmake_minimum_required(VERSION 4.0.1)
+cmake_minimum_required(VERSION 3.31.6)
 
 # Включаем поддержку импорта модулей, и в частности модуля std, чтобы не мучаться с кучей хэдеров
 set(CMAKE_CXX_STANDARD 23)
